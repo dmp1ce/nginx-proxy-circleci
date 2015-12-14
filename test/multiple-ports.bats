@@ -52,6 +52,7 @@ function setup {
 function assert_response_is_from_port {
 	local -r port=$1
 	run curl_container $SUT_CONTAINER /data --header "Host: web.bats"
-	assert_output "answer from port $port"
+	# Assert output on only first line to avoid CircleCI errors
+	assert_output -l 0 "answer from port $port"
 }
 

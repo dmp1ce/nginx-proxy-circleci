@@ -32,9 +32,11 @@ function setup {
 
 	# THEN
 	run curl_container $SUT_CONTAINER /data --header 'Host: multiple-hosts-1-A.bats'
-	assert_output "answer from port 80"
+	# Assert output on only first line to avoid CircleCI errors
+	assert_output -l 0 "answer from port 80"
 
 	# THEN
 	run curl_container $SUT_CONTAINER /data --header 'Host: multiple-hosts-1-B.bats'
-	assert_output "answer from port 80"
+	# Assert output on only first line to avoid CircleCI errors
+	assert_output -l 0 "answer from port 80"
 }

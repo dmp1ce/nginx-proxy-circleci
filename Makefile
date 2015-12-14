@@ -12,3 +12,6 @@ update-dependencies:
 test:
 	docker build -t jwilder/nginx-proxy:bats .
 	bats test
+
+test-clean:
+	./test/cleanup_test_containers.sh
